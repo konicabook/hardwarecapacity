@@ -1,0 +1,2 @@
+# hardwarecapacity
+python hardware capacity
