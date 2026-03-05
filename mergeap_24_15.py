@@ -53,16 +53,13 @@ columns_needed = [
 df1 = df1[columns_needed]
 df2 = df2[columns_needed]
 
-print("df1 columns:", len(df1.columns))
-print("df2 columns:", len(df2.columns))
+#print("df1 columns:", len(df1.columns))
+#print("df2 columns:", len(df2.columns))
 
 # Perform a full outer join (union)
 result = pd.concat([df1, df2], ignore_index=True)
 
-
 #add header into result file "Last Association Time	User	MAC Address	Vendor	IP Address	AP Name	802.11 State	SSID	Profile	Protocol	AP Map Location	Endpoint Type	Last Seen	AP MAC Address	AP IP Address	Device IP Address"
-#add header into result file "Last Association Time	User	MAC Address	Vendor	IP Address	AP Name	802.11 State	SSID	Profile	Protocol	AP Map Location	Endpoint Type	Last Seen	AP MAC Address	AP IP Address	Device IP Address"
-#result.columns = ["Last Association Time", "User", "MAC Address", "Vendor", "IP Address", "AP Name", "802.11 State", "SSID", "Profile", "Protocol", "AP Map Location", "Endpoint Type", "Last Seen", "AP MAC Address", "AP IP Address", "Device IP Address"]
 
 #select row if column ssid is value WFMA21 , WFMB24
 result = result[result['SSID'].isin(['WFMA21', 'WFMB24'])]
@@ -137,11 +134,61 @@ result = result.drop(result.columns[[0,8]], axis=1)
 
 #print count group by ssid and device type
 print("Count group by SSID and Device Type:")
-print(result.groupby(["SSID_Name", "Device_type"]).size())
+print(result.groupby(["SSID_Name", "Device_type"], dropna=False).size())
+#print count only SSID_name WFMA21 group by device type
+print("Count group by Device Type for SSID WFMA21:")
+print(result[result["SSID_Name"] == "WFMA21"].groupby("Device_type", dropna=False).size())
+
+#copy column named "MAC_Address" to new column named "MAC_Address_Clean"
+result["MAC_Address_Clean"] = result["MAC_Address"]
+result["MAC_Address_Clean"] = result["MAC_Address_Clean"].str.replace(":", "").str.upper()
+
+
+#read sotifile and merge with result file
+soti_file_path = filedialog.askopenfilename(
+    title="Select SOTI CSV file",
+    filetypes=[("CSV files", "*.csv")]
+)
+soti_df = pd.read_csv(soti_file_path)
+
+#rename column "MAC Address" to "MAC_Address"
+soti_df = soti_df.rename(columns={"Wifi MAC Address": "MAC_Address"})
+
+#clean "MAC_Address" column by remove ":" and convert to upper case
+soti_df["MAC_Address"] = soti_df["MAC_Address"].str.replace(":", "").str.upper()
+
+
+# Merge by MAC Address
+result = pd.merge(
+    result,
+    soti_df[["MAC_Address", "Model", "Enrollment Time", "Agent Disconnect Time", "IP Address"]],
+    left_on="MAC_Address_Clean",
+    right_on="MAC_Address",
+    how="left"
+)
+
+# Secondary lookup using IP Address
+result = pd.merge(
+    result,
+    soti_df[["IP Address", "Model"]].rename(columns={"Model": "Model_IP"}),
+    left_on="IP_Address",
+    right_on="IP Address",
+    how="left"
+)
+
+# Fill missing model
+result["Model"] = result["Model"].fillna(result["Model_IP"])
+
+# Clean columns
+result = result.drop(columns=["Model_IP", "IP Address_y","IP Address_x","MAC_Address_y"])
+
+#print count group by ssid and model include null value or unknown value
+print("Count group by SSID and Model:")
+print(result.groupby(["SSID_Name", "Model"], dropna=False).size())
 
 # Save the result to a new CSV file
 result.to_csv(r'D:\ITH\tempdownload\result.csv', index=False)
 #save to xlsx file
 result.to_excel(r'D:\ITH\tempdownload\result.xlsx', index=False)
 
-print("Merge completed. Result saved to result.csv")
+print("Merge completed. Result saved to result.csv and result.xlsx")
