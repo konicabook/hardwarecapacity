@@ -119,7 +119,25 @@ result["Device_State"] = result["Device_State"].replace({
 
 #insert new column after column "Last_Association_Time" with name "Disconnected_Time" and value with calculation of current time - last association time if device state is "Disconnected" else value is empty from Column "Last_Association_Time and Today date time"
 from datetime import datetime
+# 1 Remove ICT from text
+result["Last_Association_Time_clean"] = result["Last_Association_Time"].str.replace(" ICT", "", regex=False)
 
+# 2 Convert to datetime
+result["Last_Association_Time_dt"] = pd.to_datetime(
+    result["Last_Association_Time_clean"],
+    format="%a %b %d %H:%M:%S %Y",
+    errors="coerce"
+)
+
+# 3 Calculate date difference
+result["datediff"] = (pd.Timestamp.now() - result["Last_Association_Time_dt"]).dt.days
+
+#remove column index 1 and 8
+result = result.drop(result.columns[[0,8]], axis=1)
+
+#print count group by ssid and device type
+print("Count group by SSID and Device Type:")
+print(result.groupby(["SSID_Name", "Device_type"]).size())
 
 # Save the result to a new CSV file
 result.to_csv(r'D:\ITH\tempdownload\result.csv', index=False)
