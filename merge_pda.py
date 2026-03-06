@@ -81,7 +81,6 @@ df_other_pda.to_csv(
 #union df_mc_pda and df_other_pda
 df_union = pd.concat([df_mc_pda, df_other_pda], ignore_index=True)
 
-
 #union 2 dataframes with specify header
 union_header = ["comname", "date", "time", "storeno", "hardwareserial", "value_1", "osname", "osversion", "brand", "model", "macaddress", "ipaddress", "wificonfigversion", "ssid", "apconnected"]
 
@@ -93,12 +92,24 @@ df_other_pda.columns = union_header
 
 df_union = pd.concat([df_mc_pda, df_other_pda], ignore_index=True)
 
+#delete row if calue in colum date it Nan
+df_union = df_union.dropna(subset=["date"])
+df_union = df_union.dropna(subset=["time"])
 
-#write df_union to csv
+#add header into df_mc_pda
+union_dataframe_header = ["comname", "date", "time", "storeno", "hardwareserial", "value_1", "osname", "osversion", "brand", "model", "macaddress", "ipaddress", "wificonfigversion", "ssid", "apconnected"]
+df_union.columns = union_dataframe_header
+
 union_output_csv = r"D:\OneDrive - CPALLGROUP\IT_Hardware\Asset_Management\hw_capa\vmr_pda_union.csv"
-with open(union_output_csv, 'w', newline='', encoding='utf-8') as csvfile:
-    writer = csv.writer(csvfile, delimiter="|")
-    writer.writerows(df_union.values.tolist())
+df_union.to_csv(
+    union_output_csv,
+    sep="|",
+    index=False,
+    encoding="utf-8"
+)
+
+
+
 
 print(f"Processed {len(vmr_files)} files")
 print(f"Output saved to {output_csv}")
