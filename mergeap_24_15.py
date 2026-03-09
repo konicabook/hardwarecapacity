@@ -186,9 +186,19 @@ result = result.drop(columns=["Model_IP", "IP Address_y","IP Address_x","MAC_Add
 print("Count group by SSID and Model:")
 print(result.groupby(["SSID_Name", "Model"], dropna=False).size())
 
-# Save the result to a new CSV file
-result.to_csv(r'D:\ITH\tempdownload\result.csv', index=False)
-#save to xlsx file
-result.to_excel(r'D:\ITH\tempdownload\result.xlsx', index=False)
 
-print("Merge completed. Result saved to result.csv and result.xlsx")
+
+#open dialog box to save destination file
+save_file_path = filedialog.asksaveasfilename(
+    title="Save Result As",
+    defaultextension=".csv",
+    filetypes=[("CSV files", "*.csv"), ("Excel files", "*.xlsx")]
+)
+
+
+# Save the result to a new CSV file
+result.to_csv(save_file_path, index=False)
+#save to xlsx file
+result.to_excel(save_file_path.replace(".csv", ".xlsx"), index=False)
+
+print("Merge completed. Result saved to " + save_file_path)
