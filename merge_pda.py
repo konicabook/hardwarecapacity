@@ -109,7 +109,5 @@ df_union.to_csv(
 )
 
 
-
-
 print(f"Processed {len(vmr_files)} files")
 print(f"Output saved to {output_csv}")
