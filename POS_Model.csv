@@ -1,7 +1,10 @@
 cpu_code,model
-cpu_1,NEC_TWINPOS_3000
-cpu_2,NEC_TWINPOS_G9
-cpu_3,NEC_TWINPOS_G9_EXTENDED
-cpu_4,NEC_TWINPOS_G5100
-cpu_5,DIEBOLD
+Intel64 Family 6 Model 140 Stepping 1,VynaPOS
+Intel64 Family 6 Model 140 Stepping 2,VynaPOS
+x86 Family 6 Model 142 Stepping 9,DieBold
+x86 Family 6 Model 37 Stepping 5,POS NEC G9
+x86 Family 6 Model 60 Stepping 3,POS G9 Extended
+x86 Family 6 Model 9 Stepping 5,POS NEC 3500
+x86 Family 6 Model 94 Stepping 3,POS Self Check G5100
+
 

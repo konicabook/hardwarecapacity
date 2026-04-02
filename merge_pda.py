@@ -1,9 +1,10 @@
 from pathlib import Path
-import csv
 import pandas as pd
+import csv
 
-vmr_folder = r"D:\OneDrive - CPALLGROUP\IT_Hardware\Asset_Management\hw_capa\04326\version_vmr_bak"
-output_csv = r"D:\OneDrive - CPALLGROUP\IT_Hardware\Asset_Management\hw_capa\vmr_pda_poc.csv"
+
+vmr_folder = r"D:\ITH\tempdownload\ca\202603\version_vmr_bak"
+output_csv = r"D:\ITH\tempdownload\ca\202603\vmr_pda_poc.csv"
 
 vmr_files = sorted(Path(vmr_folder).glob("S*.vmr"))
 

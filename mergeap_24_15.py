@@ -203,4 +203,3 @@ result.to_excel(save_file_path.replace(".csv", ".xlsx"), index=False)
 
 print("Merge completed. Result saved to " + save_file_path)
 
-#want to built exe file using pyinstaller, run command in terminal "pyinstaller --onefile mergeap_24_15.py" and find exe file in dist folder
