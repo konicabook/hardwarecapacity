@@ -26,6 +26,15 @@ result_df = joined_df.assign(
 # Optionally drop the duplicate join key column from the right table
 result_df = result_df.drop(columns=["รหัสร้าน"])
 
+#move column STORE_ID,ชื่อสาขา,ภาค,สถานะร้านปัจจุบัน to the front
+cols = result_df.columns.tolist()
+cols = ["STORE_ID", "ชื่อสาขา", "ภาค", "สถานะร้านปัจจุบัน"] + [col for col in cols if col not in ["STORE_ID", "ชื่อสาขา", "ภาค", "สถานะร้านปัจจุบัน"]]
+result_df = result_df[cols]
+
+#drop column "I" , "J" , "K" , "L"
+columns_to_drop = ["I", "J", "K", "L"]
+result_df = result_df.drop(columns=columns_to_drop)
+
 # Save the joined result
 result_df.to_csv(output_path, index=False, encoding="utf-8-sig")
 
