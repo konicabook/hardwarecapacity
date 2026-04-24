@@ -16,23 +16,25 @@ def main():
         right_reader = csv.DictReader(right_file)
         right_rows = list(right_reader)
 
+
     right_map = {
         row.get("TERMINAL_NAME", ""): {
             "MAINBOARD_SERIAL_NO": row.get("MAINBOARD_SERIAL_NO", ""),
             "ASSET_NO": row.get("ASSET_NO", ""),
+            "STORE_ID": row.get("STORE_ID", ""),
         }
         for row in right_rows
         if row.get("TERMINAL_NAME", "")
     }
 
-    extra_columns = ["MAINBOARD_SERIAL_NO", "ASSET_NO"]
+    #want more columns from right file, add them here to ensure they are included in the output
+
+
+    extra_columns = ["MAINBOARD_SERIAL_NO", "ASSET_NO","STORE_ID"]
     output_fieldnames = list(left_fieldnames)
     for col in extra_columns:
         if col not in output_fieldnames:
             output_fieldnames.append(col)
-
-    #drop columns I,J,K,L
-    output_fieldnames = [col for col in output_fieldnames if col not in ["I", "J", "K", "L"]]
 
     with output_path.open('w', newline='', encoding='utf-8') as output_file:
         writer = csv.DictWriter(output_file, fieldnames=output_fieldnames)
