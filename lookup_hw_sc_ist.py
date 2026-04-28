@@ -3,9 +3,9 @@ from pathlib import Path
 
 
 def main():
-    left_path = Path(r"D:\ITH\tempdownload\ca\202603\vmr_hardware_poc_pos.csv")
-    right_path = Path(r"D:\ITH\tempdownload\ca\202603\output_ist.csv")
-    output_path = Path(r"D:\ITH\tempdownload\ca\202603\vmr_hardware_poc_pos_joined.csv")
+    left_path = Path(r"D:\ITH\tempdownload\ca\202604\vmr_hardware_poc_sc.csv")
+    right_path = Path(r"D:\ITH\tempdownload\ca\202604\output_ist.csv")
+    output_path = Path(r"D:\ITH\tempdownload\ca\202604\vmr_sc_hardware_ist.csv")
 
     with left_path.open(newline='', encoding='utf-8') as left_file:
         left_reader = csv.DictReader(left_file)
@@ -49,7 +49,6 @@ def main():
 
 
     print(f"Left join complete. Output written to: {output_path}")
-
 
 if __name__ == "__main__":
     main()

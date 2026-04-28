@@ -1,8 +1,8 @@
 from pathlib import Path
 import csv
 
-vmr_folder = r"D:\ITH\tempdownload\ca\202603\version_vmr_bak"
-output_csv = r"D:\ITH\tempdownload\ca\202603\vmr_hardware_poc.csv"
+vmr_folder = r"D:\ITH\tempdownload\ca\202604\version_vmr_bak"
+output_csv = r"D:\ITH\tempdownload\ca\202604\vmr_hardware_poc.csv"
 
 vmr_files = sorted(Path(vmr_folder).glob("*.vmr"))
 
@@ -45,21 +45,22 @@ for row in all_rows[1:]:  # skip header
 #split Data to 2 csv 1 is data with comtype POS and another is data with comtype SC
 pos_rows = [row for row in all_rows if row[1] == "POS"]
 sc_rows = [row for row in all_rows if row[1] == "SC"]
-with open(r"D:\ITH\tempdownload\ca\202603\vmr_hardware_poc_pos.csv", 'w', newline='', encoding='utf-8') as f:
-    writer = csv.writer(f)
-    writer.writerows(pos_rows)
-with open(r"D:\ITH\tempdownload\ca\202603\vmr_hardware_poc_sc.csv", 'w', newline='', encoding='utf-8') as f:
-    writer = csv.writer(f)
-    writer.writerows(sc_rows)
 
-#look up for POS Model
+with open(r"D:\ITH\tempdownload\ca\202604\vmr_hardware_poc_pos.csv", 'w', newline='', encoding='utf-8') as f:
+    writer = csv.writer(f)
+    writer.writerow(header) # write header to POS file  
+    writer.writerows(pos_rows)
+with open(r"D:\ITH\tempdownload\ca\202604\vmr_hardware_poc_sc.csv", 'w', newline='', encoding='utf-8') as f:
+    writer = csv.writer(f)
+    writer.writerow(header) # write header to SC file   
+    writer.writerows(sc_rows)
 
 
 
 # Write output
-with open(output_csv, 'w', newline='', encoding='utf-8') as f:
-    writer = csv.writer(f)
-    writer.writerows(all_rows)
+#with open(output_csv, 'w', newline='', encoding='utf-8') as f:
+#    writer = csv.writer(f)
+#    writer.writerows(all_rows)
 
 print(f"Processed {len(vmr_files)} files")
-print(f"Output saved to {output_csv}")
+#print(f"Output saved to {output_csv}")
