@@ -3,8 +3,8 @@ import pandas as pd
 import csv
 
 
-vmr_folder = r"D:\ITH\tempdownload\ca\202603\version_vmr_bak"
-output_csv = r"D:\ITH\tempdownload\ca\202603\vmr_pda_poc.csv"
+vmr_folder = r"D:\ITH\tempdownload\ca\202604\version_vmr_bak"
+output_csv = r"D:\ITH\tempdownload\ca\202604\vmr_pda_poc.csv"
 
 vmr_files = sorted(Path(vmr_folder).glob("S*.vmr"))
 

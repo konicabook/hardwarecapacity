@@ -1,6 +1,7 @@
 cpu_code,model
-cpu_1,DELL_OptiPlex_9020
-cpu_2,DELL_OptiPlex_9020
-cpu_3,DELL_OptiPlex_9020
-cpu_4,DELL_OptiPlex_9020
-cpu_5,DELL_OptiPlex_9020
+Intel64 Family 6 Model 151 Stepping 5,HP EliteDesk SFF 600 G9 Desktop PC
+Intel64 Family 6 Model 158 Stepping 10,HP ProDesk SFF 600 G5 Desktop PC
+Intel64 Family 6 Model 191 Stepping 5,HP ProDesk SFF 400 G9 Desktop PC
+Intel64 Family 6 Model 94 Stepping 3,HP EliteDesk SFF 800 G2 Desktop PC
+x86 Family 6 Model 60 Stepping 3,Dell OptiPlex 9020
+
