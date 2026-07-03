@@ -59,6 +59,6 @@ def merge_text_files_to_csv(folder_path, output_csv):
     print(f"Merged {len(all_data)} lines into {output_csv}")
 
 if __name__ == "__main__":
-    folder = r"D:\ITH\tempdownload\ca\202605\sc_scn_5dgs_bak"
-    output = r"D:\ITH\tempdownload\ca\202605\extract_scanner_data.csv"
+    folder = r"D:\ITH\tempdownload\ca\202606\sc_scn_5dgs_bak"
+    output = r"D:\ITH\tempdownload\ca\202606\extract_scanner_data.csv"
     merge_text_files_to_csv(folder, output)

@@ -2,8 +2,8 @@ import os
 import json
 import csv
 
-source_folder = r'D:\ITH\tempdownload\ca\202605\sc_ist_5dgs_bak'  # Specify the source folder containing .ist files
-output_file = r'D:\ITH\tempdownload\ca\202605\output_ist.csv'
+source_folder = r'D:\ITH\tempdownload\ca\202606\sc_ist_5dgs_bak'  # Specify the source folder containing .ist files
+output_file = r'D:\ITH\tempdownload\ca\202606\output_ist.csv'
 
 # Define the headers based on the example
 headers = [
