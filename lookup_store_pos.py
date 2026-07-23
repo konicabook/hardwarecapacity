@@ -1,8 +1,8 @@
 import pandas as pd
 
-csv_path = r"D:\ITH\tempdownload\ca\202606\vmr_pos_hardware_ist.csv"
-excel_path = r"D:\ITH\tempdownload\ca\202606\store_profile.xlsx"
-output_path = r"D:\ITH\tempdownload\ca\202606\vmr_pos_ist_store.csv"
+csv_path = r"D:\ITH\tempdownload\ca\202607\vmr_pos_hardware_ist.csv"
+excel_path = r"D:\ITH\tempdownload\ca\202607\store_profile.xlsx"
+output_path = r"D:\ITH\tempdownload\ca\202607\vmr_pos_ist_store.csv"
 
 # Read the source CSV and the store profile Excel file
 pos_df = pd.read_csv(csv_path, dtype={"STORE_ID": str})

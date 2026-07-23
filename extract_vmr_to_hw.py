@@ -1,8 +1,8 @@
 from pathlib import Path
 import csv
 
-vmr_folder = r"D:\ITH\tempdownload\ca\202606\version_vmr_bak"
-output_csv = r"D:\ITH\tempdownload\ca\202606\vmr_hardware_poc.csv"
+vmr_folder = r"D:\ITH\tempdownload\ca\202607\version_vmr_bak"
+output_csv = r"D:\ITH\tempdownload\ca\202607\vmr_hardware_poc.csv"
 
 vmr_files = sorted(Path(vmr_folder).glob("*.vmr"))
 
@@ -46,11 +46,11 @@ for row in all_rows[1:]:  # skip header
 pos_rows = [row for row in all_rows if row[1] == "POS"]
 sc_rows = [row for row in all_rows if row[1] == "SC"]
 
-with open(r"D:\ITH\tempdownload\ca\202606\vmr_hardware_poc_pos.csv", 'w', newline='', encoding='utf-8') as f:
+with open(r"D:\ITH\tempdownload\ca\202607\vmr_hardware_poc_pos.csv", 'w', newline='', encoding='utf-8') as f:
     writer = csv.writer(f)
     writer.writerow(header) # write header to POS file  
     writer.writerows(pos_rows)
-with open(r"D:\ITH\tempdownload\ca\202606\vmr_hardware_poc_sc.csv", 'w', newline='', encoding='utf-8') as f:
+with open(r"D:\ITH\tempdownload\ca\202607\vmr_hardware_poc_sc.csv", 'w', newline='', encoding='utf-8') as f:
     writer = csv.writer(f)
     writer.writerow(header) # write header to SC file   
     writer.writerows(sc_rows)
