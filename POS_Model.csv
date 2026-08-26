@@ -1,10 +1,8 @@
 cpu_code,model
-Intel64 Family 6 Model 140 Stepping 1,VynaPOS
-Intel64 Family 6 Model 140 Stepping 2,VynaPOS
+Intel64 Family 6 Model 140 Stepping 1,Histone
+Intel64 Family 6 Model 140 Stepping 2,Histone
 x86 Family 6 Model 142 Stepping 9,DieBold
 x86 Family 6 Model 37 Stepping 5,POS NEC G9
 x86 Family 6 Model 60 Stepping 3,POS G9 Extended
 x86 Family 6 Model 9 Stepping 5,POS NEC 3500
 x86 Family 6 Model 94 Stepping 3,POS Self Check G5100
-
-
